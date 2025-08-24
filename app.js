@@ -82,8 +82,7 @@ btnRegistrar.addEventListener('click', async () => {
   } catch (e) {
     console.error(e);
     alert('Erro ao criar conta: ' + (e?.message || e));
-  }
-});
+  });
 
 btnLogin.addEventListener('click', async () => {
   const mat = loginMatricula.value.trim();
@@ -94,8 +93,7 @@ btnLogin.addEventListener('click', async () => {
   } catch (e) {
     console.error(e);
     alert('Falha no login: ' + (e?.message || e));
-  }
-});
+  });
 
 btnLogout.addEventListener('click', async () => {
   await signOut(auth);
@@ -109,8 +107,7 @@ btnChangePass.addEventListener('click', async () => {
     alert('Senha alterada com sucesso.');
   } catch (e) {
     alert('Erro ao alterar senha: ' + (e?.message || e));
-  }
-});
+  });
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
@@ -166,7 +163,6 @@ async function detectOrUpdateCaixaStatus() {
     enableWorkflows(false);
     relatorioLista.textContent = 'Sem lançamentos. Abra um caixa para iniciar.';
   }
-}
 
 function setStatusUI(status) {
   caixaStatusEl.textContent = status === 'aberto' ? 'Caixa Aberto' : 'Caixa Fechado';
@@ -290,11 +286,13 @@ function printThermalReceipt(data) {
   <html><head><meta charset="utf-8">
   <title>Recibo</title>
   <style>
-    @page { size: 80mm auto; margin: 5mm; }
-    body { font-family: "Courier New", Courier, monospace; font-weight: bold; font-size: 14px; margin:0; padding:0; }
-    h1 { text-align: center; font-size: 16px; margin: 6px 0 10px; font-weight:bold; }
-    .line { text-align: right; margin: 2px 0; }
-    .sig { margin-top: 15px; border-top: 1px solid #000; width: 100%; text-align:center; }
+    
+    @page { size: 80mm 150mm; margin: 6mm; }
+    body { font-family: "Courier New", Courier, monospace; font-size: 14px; font-weight: bold; text-align: right; direction: rtl; }
+    h1 { text-align: center; font-size: 16px; margin: 8px 0 12px; }
+    .line { margin: 2px 0; }
+    .sig { margin-top: 20px; border-top: 1px solid #000; width: 100%; text-align: center; }
+
   </style></head>
   <body onload="window.print(); setTimeout(()=>window.close(), 500);">
     <h1>RECIBO DE PAGAMENTO MANUAL</h1>
